@@ -52,7 +52,7 @@ public extension Either {
     }
 }
 
-// MARK: -
+// MARK: - Never
 
 public extension Either where Left == Never {
     var right: Right {
@@ -89,6 +89,10 @@ public extension Either where Right == Never, Left == Error {
         .failure(left)
     }
 }
+
+// MARK: - Equatable
+
+extension Either: Equatable where Left: Equatable, Right: Equatable {}
 
 // MARK: - Maps
 public extension Either {
