@@ -3,6 +3,7 @@
 import Foundation
 
 // MARK: Zip on Optionals
+@discardableResult
 public func zip<A, B>(
   _ a: A?,
   _ b: B?
@@ -12,6 +13,7 @@ public func zip<A, B>(
     return (a,b)
 }
 
+@discardableResult
 public func zip<A, B, C>(
   _ a: A?,
   _ b: B?,
@@ -20,6 +22,7 @@ public func zip<A, B, C>(
   return zip(zip(a, b), c).map { ($0.0, $0.1, $1) }
 }
 
+@discardableResult
 public func zip<A, B, C, D>(
   _ a: A?,
   _ b: B?,
@@ -29,6 +32,7 @@ public func zip<A, B, C, D>(
   return zip(zip(a, b), c, d).map { ($0.0, $0.1, $1, $2) }
 }
 
+@discardableResult
 public func zip<A, B, C, D, E>(
   _ a: A?,
   _ b: B?,
@@ -39,6 +43,7 @@ public func zip<A, B, C, D, E>(
   return zip(zip(a, b), c, d, e).map { ($0.0, $0.1, $1, $2, $3) }
 }
 
+@discardableResult
 public func zip<A, B, C, D, E, F>(
   _ a: A?,
   _ b: B?,
@@ -50,6 +55,7 @@ public func zip<A, B, C, D, E, F>(
   return zip(zip(a, b), c, d, e, f).map { ($0.0, $0.1, $1, $2, $3, $4) }
 }
 
+@discardableResult
 public func zip<A, B, C, D, E, F, G>(
   _ a: A?,
   _ b: B?,
@@ -62,6 +68,7 @@ public func zip<A, B, C, D, E, F, G>(
   return zip(zip(a, b), c, d, e, f, g).map { ($0.0, $0.1, $1, $2, $3, $4, $5) }
 }
 
+@discardableResult
 public func zip<A, B, C, D, E, F, G, H>(
   _ a: A?,
   _ b: B?,
@@ -75,6 +82,7 @@ public func zip<A, B, C, D, E, F, G, H>(
   return zip(zip(a, b), c, d, e, f, g, h).map { ($0.0, $0.1, $1, $2, $3, $4, $5, $6) }
 }
 
+@discardableResult
 public func zip<A, B, C, D, E, F, G, H, I>(
   _ a: A?,
   _ b: B?,
@@ -89,6 +97,7 @@ public func zip<A, B, C, D, E, F, G, H, I>(
   return zip(zip(a, b), c, d, e, f, g, h, i).map { ($0.0, $0.1, $1, $2, $3, $4, $5, $6, $7) }
 }
 
+@discardableResult
 public func zip<A, B, C, D, E, F, G, H, I, J>(
   _ a: A?,
   _ b: B?,

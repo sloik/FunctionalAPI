@@ -19,9 +19,9 @@ let package = Package(
                  url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
                  from: "1.7.2"),
         
-//        .package(name: "OptionalAPI",
-//                 url: "https://github.com/sloik/OptionalAPI",
-//                 from: "1.0.0"),
+        .package(name: "OptionalAPI",
+                 url: "https://github.com/sloik/OptionalAPI",
+                 from: "1.0.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -33,6 +33,10 @@ let package = Package(
         
         .testTarget(
             name: "FunctionalAPITests",
-            dependencies: ["FunctionalAPI", "SnapshotTesting"]),
+            dependencies: [
+                "FunctionalAPI",
+                "SnapshotTesting",
+                "OptionalAPI",
+        ]),
     ]
 )
