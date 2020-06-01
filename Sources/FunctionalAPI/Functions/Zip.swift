@@ -1,6 +1,7 @@
 
-
 import Foundation
+
+// https://hoogle.haskell.org/?hoogle=zip
 
 // MARK: Zip on Optionals
 @discardableResult

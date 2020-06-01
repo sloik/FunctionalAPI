@@ -1,4 +1,4 @@
 
 import Foundation
 
-public func identity<A>(_ a: A) -> A { return a }
+public func identity<A>(_ a: A) -> A { a }
