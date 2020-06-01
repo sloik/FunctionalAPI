@@ -52,7 +52,7 @@ product(aa, bb)
 // (2, "b")
 ```
 
-### Where this function use useful?
+### Where this function is useful?
 
 It depends what you need. I use it to generate variations in my snapshot tests. One array contains device, other size class, language direction... you get the idea ;)
 
