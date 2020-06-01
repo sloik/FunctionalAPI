@@ -175,9 +175,181 @@ class EitherComputedPropertiesTests: XCTestCase {
     }
     
     // MARK: Flat Maps
+    
+    func test_flatMap() {
+        let rightResult: Either<String, Character> = right.flatMap(alwaysRight)
+        XCTAssertTrue(rightResult.isRight)
+        XCTAssertEqual(rightResult.right!, "C", "Should transform original value!")
+        
+        
+        let leftResult: Either<String, Character> = left.flatMap(alwaysLeft)
+        XCTAssertTrue(leftResult.isLeft)
+        XCTAssertEqual(leftResult.left, left.left, "Should not change left value!")
+    }
+    
+    func test_free_flatMap() {
+        let rightResult: Either<String, Character> = flatMap(right, alwaysRight)
+        XCTAssertTrue(rightResult.isRight)
+        XCTAssertEqual(rightResult.right!, "C", "Should transform original value!")
+        
+        
+        let leftResult: Either<String, Character> = flatMap(left, alwaysLeft)
+        XCTAssertTrue(leftResult.isLeft)
+        XCTAssertEqual(leftResult.left, left.left, "Should not change the left value!")
+    }
+    
+    func test_flatMapRight() {
+        let rightResult: Either<String, Character> = right.flatMapRight(alwaysRight)
+        XCTAssertTrue(rightResult.isRight)
+        XCTAssertEqual(rightResult.right!, "C")
+        
+        
+        let leftResult: Either<String, Character> = left.flatMapRight(alwaysLeft)
+        XCTAssertTrue(leftResult.isLeft)
+        XCTAssertEqual(leftResult.left, left.left, "Should not change the left value!")
+    }
+    
+    func test_free_flatMapRight() {
+        let rightResult: Either<String, Character> = flatMapRight(right, alwaysRight)
+        XCTAssertTrue(rightResult.isRight)
+        XCTAssertEqual(rightResult.right!, "C", "Should transform original value!")
+        
+        
+        let leftResult: Either<String, Character> = flatMapRight(left, alwaysLeft)
+        XCTAssertTrue(leftResult.isLeft)
+        XCTAssertEqual(leftResult.left, left.left, "Should not change the left value!")
+    }
+    
+    func test_flatMapLeft() {
+        let rightResult: Either<Character, Int> = right.flatMapLeft(alwaysRight)
+        XCTAssertTrue(rightResult.isRight)
+        XCTAssertEqual(rightResult.right, right.right, "Should not mutate right value!")
+        
+        
+        let leftResult: Either<Character, Int> = left.flatMapLeft(alwaysLeft)
+        XCTAssertTrue(leftResult.isLeft)
+        XCTAssertEqual(leftResult.left, "C", "Should change left value!")
+    }
+    
+    func test_free_flatMapLeft() {
+        let rightResult: Either<Character, Int> = flatMapLeft(right, alwaysRight)
+        XCTAssertTrue(rightResult.isRight)
+        XCTAssertEqual(rightResult.right, right.right, "Should not mutate right value!")
+        
+        
+        let leftResult: Either<Character, Int> = flatMapLeft(left, alwaysLeft)
+        XCTAssertTrue(leftResult.isLeft)
+        XCTAssertEqual(leftResult.left, "C", "Should change left value!")
+    }
+    
+    // MARK: - Utils
+    func test_lefts() {
+        XCTAssertEqual(
+            lefts(eithers),
+            ["A", "B"]
+        )
+        
+        XCTAssertEqual(
+            lefts(eithersEmpty),
+            []
+        )
+    }
+    
+    func test_rights() {
+        XCTAssertEqual(
+            rights(eithers),
+            [42, 24]
+        )
+        
+        XCTAssertEqual(
+            rights(eithersEmpty),
+            []
+        )
+    }
+    
+    func test_partitionEithers() {
+        let (lefts, rights) = partitionEithers(eithers)
+        XCTAssertEqual(
+            lefts,
+            ["A", "B"]
+        )
+        
+        XCTAssertEqual(
+            rights,
+            [42, 24]
+        )
+        
+        let (emptyLefts, emptyRights) = partitionEithers(eithersEmpty)
+        XCTAssertEqual(
+            emptyLefts,
+            []
+        )
+        
+        XCTAssertEqual(
+            emptyRights,
+            []
+        )
+    }
+    
+    func test_either() {
+        // Arrange
+        let leftTransform: (String) -> [Int] = { [$0.count] }
+        let rightTransform: (Int) -> [Int] = { [$0] }
+        
+        let ey = either(leftTransform, rightTransform)
+        
+        // Act
+        let fromLeft = ey(left)
+        let fromRight = ey(right)
+        
+        // Act
+        XCTAssertEqual(
+            fromLeft,
+            [8],
+            "Should produce an array with the length of the string!"
+        )
+        
+        XCTAssertEqual(
+            fromRight,
+            [42],
+            "Should produce an array with the value wrapped in an array!"
+        )
+    }
+    
+    func test_fromLeft() {
+        XCTAssertEqual(
+            left.fromLeft("Default Left"),
+            "I'm left",
+            "Should return value stored in left!"
+        )
+        
+        XCTAssertEqual(
+            right.fromLeft("Default Left"),
+            "Default Left",
+            "Should return default value when run on right!"
+        )
+    }
+    
+    func test_fromRight() {
+        XCTAssertEqual(
+            right.fromRight(69),
+            42,
+            "Should return value stored in left!"
+        )
+        
+        XCTAssertEqual(
+            left.fromRight(69),
+            69,
+            "Should return default value when run on right!"
+        )
+    }
 }
 
 extension String: Error {}
+
+fileprivate let eithers: [Either<String,Int>] = [ .left("A"), .right(42), .left("B"), .right(24) ]
+fileprivate let eithersEmpty: [Either<String,Int>] = []
+
 
 fileprivate let left = Either<String,Int>.left("I'm left")
 fileprivate let right = Either<String,Int>.right(42)
@@ -189,4 +361,18 @@ fileprivate let rightNever = Either<String,Never>.left("I'm left")
 
 fileprivate let rightNeverLeftError = Either<Error,Never>.left("I'm left")
 
+fileprivate func alwaysRight(_ i: Int) -> Either<String, Character> {
+    .right("C")
+}
 
+fileprivate func alwaysLeft(_ i: Int) -> Either<String, Character> {
+    .left("C")
+}
+
+fileprivate func alwaysRight(_ s: String) -> Either<Character, Int> {
+    .right(69)
+}
+
+fileprivate func alwaysLeft(_ s: String) -> Either<Character, Int> {
+    .left("C")
+}

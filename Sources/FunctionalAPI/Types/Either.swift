@@ -5,6 +5,7 @@
  */
 
 import Foundation
+import OptionalAPI
 
 public enum Either<Left, Right> {
     case left(Left)
@@ -43,6 +44,15 @@ public extension Either {
         default: return .none
         }
     }
+    
+    
+    /// Return the contents of a Left-value or a default value otherwise.
+    /// - Parameter defaultLeft: Value of type `Left` to be returned when self is `Right`
+    func fromLeft(_ defaultLeft: Left) -> Left { left.or(defaultLeft) }
+    
+    /// Return the contents of a Right-value or a default value otherwise.
+    /// - Parameter defaultLeft: Value of type `Right` to be returned when self is `Left`
+    func fromRight(_ defaultRight: Right) -> Right { right.or(defaultRight)}
     
     // Right is a bit special in this type 🤓
     var toOptional: Right? { right }
@@ -203,6 +213,7 @@ public func flatMapLeft<NewL,L,R>(
 }
 
 // MARK: - Utils
+// Inspired from: http://hackage.haskell.org/package/base-4.14.0.0/docs/Data-Either.html
 
 public func either<L,R,T>(
     _  leftTransform: @escaping (L) -> T,
@@ -237,3 +248,4 @@ public func partitionEithers<L,R>(_ eithers: [Either<L,R>]) -> ([L], [R]) {
             }
     }
 }
+

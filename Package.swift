@@ -29,6 +29,7 @@ let package = Package(
         .target(
             name: "FunctionalAPI",
             dependencies: [
+                "OptionalAPI",
         ]),
         
         .testTarget(
@@ -36,7 +37,6 @@ let package = Package(
             dependencies: [
                 "FunctionalAPI",
                 "SnapshotTesting",
-                "OptionalAPI",
         ]),
     ]
 )
