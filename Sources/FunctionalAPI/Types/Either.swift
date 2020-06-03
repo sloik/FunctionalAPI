@@ -15,6 +15,8 @@ public enum Either<Left, Right> {
 // MARK: - Computed Properties
 
 public extension Either {
+    
+    /// `true` when is `left`
     var isLeft: Bool {
         switch self {
         case .left: return true
@@ -23,6 +25,7 @@ public extension Either {
         }
     }
     
+    /// `true` when is `left`
     var isRight: Bool {
         switch self {
         case .right: return true

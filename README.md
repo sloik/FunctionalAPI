@@ -88,4 +88,47 @@ Under the hood `map` is used by it read _better_.
 
 ## Either
 
+Either is one of those types that you already know in Swift but it's specialized in some values. 
+
+Here is it:
+
+```swift
+enum Either<Left, Right> {
+    case left(Left)
+    case right(Right)
+}
+```
+
+Slo it's an enum with two cases. That should ring at least two bells. Usually the `right` one is associated with the `good` or `success` or `dextra`. The `left` on the other hand is for `bad`, `failure`, `error` or you can say `sinistra`.
+
+At least two types that are common in Swift are a specialization of this `Either`. 
+
+You can take a look at _Optional_ and match `left` with _none_ case. Also you can take a look at _Result_ and match if _failure_ with a `left` case.
+
+So here you have a more generic type that you can use. It's useful not only when you have to validate stuff. But also when there is a need to return different types.
+
+### Computed Properties
+
+To make life a bit easier there are defined some helper properties. 
+
+Handy properties for logic checks. 
+
+```swift
+var isLeft : Bool // true if `left` case
+var isRight: Bool // true if `right` case
+```
+
+When you want to get to a value but you can deal with optional.
+
+```swift
+var right: Right?
+var left : Left?
+```
+
+Take a look at [OptionalAPI](https://github.com/sloik/OptionalAPI) to see how working with Optional can be a pleasure.
+
+### `map`s
+
+---
+
 T.B.C.
