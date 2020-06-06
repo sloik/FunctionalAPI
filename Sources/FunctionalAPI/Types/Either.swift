@@ -109,7 +109,7 @@ extension Either: Equatable where Left: Equatable, Right: Equatable {}
 
 // MARK: - Maps
 public extension Either {
-    func map<T>(_ transform: (Right) -> T) -> Either<Left,T> {
+    func map<R>(_ transform: (Right) -> R) -> Either<Left,R> {
         switch self {
         case .right(let r):
             return .right( transform( r ) )
