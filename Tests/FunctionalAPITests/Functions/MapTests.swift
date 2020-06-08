@@ -46,15 +46,4 @@ final class MapTests: XCTestCase {
         // Assert
         XCTAssertEqual(result, [11, 21, 31])
     }
-    
-    
-    
-    
-    
-
-    static var allTests = [
-        ("test_mapShouldNot_ApplyFunctionToNoneOptionalValue", test_mapShouldNot_ApplyFunctionToNoneOptionalValue),
-        ("test_mapShould_ApplyFunctionToSomeOptionalValue", test_mapShould_ApplyFunctionToSomeOptionalValue),
-        ("test_mapShouldApplyFunctionToValue", test_mapShouldApplyFunctionToValue),
-    ]
 }

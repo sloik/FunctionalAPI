@@ -82,13 +82,4 @@ final class ProductTests: XCTestCase {
             as: .description,
             named: "aa x empty x bb")
     }
-    
-    
-    
-
-    static var allTests = [
-        ("test_products", test_products),
-        ("test_productWithEmpty", test_productWithEmpty),
-
-    ]
 }
