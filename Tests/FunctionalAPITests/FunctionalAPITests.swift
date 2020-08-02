@@ -1,4 +1,10 @@
 import XCTest
 @testable import FunctionalAPI
 
-func increment(_ i: Int) -> Int { i + 1 }
+final class FunctionalAPITests: XCTestCase {
+    func testExample() throws {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct
+        // results.
+    }
+}
