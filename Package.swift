@@ -5,6 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "FunctionalAPI",
+
+    platforms: [
+        .macOS(.v10_10),
+        .iOS(.v12),
+        .tvOS(.v12),
+        .watchOS(.v3)
+    ],
+
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(

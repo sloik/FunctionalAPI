@@ -14,7 +14,7 @@ final class ProductTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        record = false
+        SnapshotTesting.record = false
     }
 
     func test_products() {

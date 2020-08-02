@@ -8,7 +8,7 @@ class EitherComputedPropertiesTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        record = false
+        SnapshotTesting.record = false
     }
 
 // MARK: - Computed Properties
