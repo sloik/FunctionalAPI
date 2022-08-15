@@ -1,11 +1,6 @@
 
 import Foundation
 
-// MARK: - Free map on Optional
-public func map<A,B>(_ a: A?, _ f: (A) -> B) -> B? {
-    a.map(f)
-}
-
 // MARK: - Free map on Array
 public func map<A,B>(_ a: [A], _ f: (A) -> B) -> [B] {
     a.map(f)
