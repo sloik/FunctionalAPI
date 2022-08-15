@@ -26,16 +26,6 @@ let package = Package(
           url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
           from: "1.9.0"
         ),
-
-        .package(
-          url: "https://github.com/sloik/AliasWonderland.git",
-          from: "0.0.1"
-        ),
-
-        .package(
-            url: "https://github.com/sloik/OptionalAPI.git",
-            from: "3.0.2"
-        ),
     ],
 
     targets: [
@@ -43,7 +33,6 @@ let package = Package(
         .target(
             name: "FunctionalAPI",
             dependencies: [
-                .product(name: "OptionalAPI", package: "OptionalAPI"),
             ]
         ),
 
