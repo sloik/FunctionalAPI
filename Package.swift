@@ -23,8 +23,13 @@ let package = Package(
 
     dependencies: [
         .package(
-          url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
-          from: "1.9.0"
+            url: "https://github.com/pointfreeco/swift-snapshot-testing.git",
+            from: "1.9.0"
+        ),
+
+        .package(
+            url: "https://github.com/sloik/EitherSwift.git",
+            from: "1.1.0"
         ),
     ],
 
@@ -33,16 +38,17 @@ let package = Package(
         .target(
             name: "FunctionalAPI",
             dependencies: [
+                .product(name: "EitherSwift", package: "EitherSwift"),
             ]
         ),
 
-        .testTarget(
-            name: "FunctionalAPITests",
-            dependencies: [
-                "FunctionalAPI",
-                .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+            .testTarget(
+                name: "FunctionalAPITests",
+                dependencies: [
+                    "FunctionalAPI",
+                    .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
 
-            ]
-        ),
+                ]
+            ),
     ]
 )
