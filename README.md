@@ -1,3 +1,6 @@
+![Main](https://github.com/sloik/FunctionalAPI/actions/workflows/swift.yml/badge.svg?branch=main)
+![Nightly](https://github.com/sloik/FunctionalAPI/actions/workflows/nightly.yml/badge.svg)
+
 # `𝑓(x)` FunctionalAPI 
 
 Some collection of functions and types that are useful in day to day development.
