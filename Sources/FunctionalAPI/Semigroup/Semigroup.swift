@@ -6,14 +6,20 @@ precedencegroup SemigroupPrecedence {
 
 infix operator <>: SemigroupPrecedence
 
-
-/// Type that has an operation, often called combine or append,
-/// that takes two values of the same type and returns another
-/// value of the same type. This operation must be associative,
-/// meaning that the order in which the values are combined
-/// does not matter.
+/// A semigroup is a type that supports a binary operation (`combine`) that is
+/// associative.
+///
+/// Some types can have more than one valid implementation of the `Semigroup`
+/// protocol, and the witness passed to the `combine` method determines which
+/// implementation to use.
 public protocol Semigroup {
-    /// This method should combine the two values according to some associative operation.
+
+    /// Combines two values of the same type using the semigroup operation.
+    ///
+    /// - Parameters:
+    ///   - a: The first value to combine.
+    ///   - b: The second value to combine.
+    ///   - Returns: The result of combining the two values using the semigroup operation.
     static func combine(_ a: Self, _ b: Self) -> Self
 
     static func <>(lhs: Self, rhs: Self) -> Self
