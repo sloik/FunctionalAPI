@@ -2,7 +2,7 @@ extension Int: Semigroup {
 
     /// This implementation is biased to addition.
     public static func combine(_ a: Int, _ b: Int) -> Int {
-        addition(a,b)
+        a + b
     }
 
     // Addition witness
