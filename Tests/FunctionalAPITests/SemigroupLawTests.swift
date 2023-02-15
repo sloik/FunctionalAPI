@@ -41,4 +41,12 @@ class SemigroupLawTests: XCTestCase {
         testAssociativityLaw(using: Int.addition, a: 5, b: 10, c: 15)
         testAssociativityLaw(using: Int.multiplication, a: 5, b: 10, c: 15)
     }
+
+    func test_Array() {
+        testAssociativityLaw(using: [Int].combine(_:_:), a: [5], b: [10], c: [15])
+    }
+
+    func test_String() {
+        testAssociativityLaw(using: String.combine(_:_:), a: "A", b: "B", c: "C")
+    }
 }
