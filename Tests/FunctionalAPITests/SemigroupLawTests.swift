@@ -36,7 +36,6 @@ class SemigroupLawTests: XCTestCase {
         )
     }
 
-
     func test_Int() {
         testAssociativityLaw(using: Int.addition, a: 5, b: 10, c: 15)
         testAssociativityLaw(using: Int.multiplication, a: 5, b: 10, c: 15)

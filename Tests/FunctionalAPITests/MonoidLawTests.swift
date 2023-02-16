@@ -36,6 +36,10 @@ class MonoidLawTests: XCTestCase {
         testMonoidLaws(element: [42])
     }
 
+    func test_array_mconcat() {
+        // TODO: implement mconcat tests
+    }
+
     func test_String() {
         testMonoidLaws(element: "lorem")
     }
