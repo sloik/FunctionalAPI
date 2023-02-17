@@ -28,8 +28,6 @@ public protocol Semigroup {
     ///   - b: The second value to combine.
     ///   - Returns: The result of combining the two values using the semigroup operation.
     static func combine(_ a: Self, _ b: Self) -> Self
-
-    static func <>(lhs: Self, rhs: Self) -> Self
 }
 
 public extension Semigroup {
