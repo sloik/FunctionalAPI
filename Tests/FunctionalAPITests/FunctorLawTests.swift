@@ -1,6 +1,7 @@
 import XCTest
 
 import FunctionalAPI
+import EitherSwift
 
 class FunctorLawTests: XCTestCase {
 
@@ -16,6 +17,22 @@ class FunctorLawTests: XCTestCase {
         // Composition Law: fmap (f . g) == fmap f . fmap g
         let fmapGfmapF: [Int] = (array.fmap(f) as! [Int]).fmap(g) as! [Int]
         let fmapCompose: [Int] = array.fmap( compose(f, g) ) as! [Int]
+
+        XCTAssertEqual(fmapGfmapF, fmapCompose)
+    }
+
+    func test_Either() {
+        let sut = Either<Int,Int>.right(42)
+
+        // Identity Law: fmap id == id
+        XCTAssertEqual(
+            sut.fmap { $0 } as! Either<Int,Int>,
+            sut
+        )
+
+        // Composition Law: fmap (f . g) == fmap f . fmap g
+        let fmapGfmapF: Either<Int,Int> = (sut.fmap(f) as! Either<Int,Int>).fmap(g) as! Either<Int,Int>
+        let fmapCompose: Either<Int,Int> = sut.fmap( compose(f, g) ) as! Either<Int,Int>
 
         XCTAssertEqual(fmapGfmapF, fmapCompose)
     }

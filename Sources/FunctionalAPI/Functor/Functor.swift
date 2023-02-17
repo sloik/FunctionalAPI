@@ -1,4 +1,5 @@
 
+import EitherSwift
 
 // functor protocol
 public protocol Functor<A> {
@@ -22,5 +23,13 @@ extension Optional: Functor {
 
     public func fmap<B>(_ f: @escaping (Wrapped) -> B) -> any Functor<B> {
         map( f )
+    }
+}
+
+extension EitherSwift.Either: Functor {
+    public typealias A = Right
+
+    public func fmap<B>(_ f: @escaping (Right) -> B) -> any Functor<B> {
+        self.map(f)
     }
 }
