@@ -5,4 +5,8 @@ extension String: Monoid {
 
 extension Array: Monoid {
     public static var empty: [Element] { [] }
+
+    func concat() -> Element where Element: Monoid {
+        reduce(Element.empty, (<>))
+    }
 }
