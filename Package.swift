@@ -29,7 +29,7 @@ let package = Package(
 
         .package(
             url: "https://github.com/sloik/EitherSwift.git",
-            from: "1.1.0"
+            from: "1.2.0"
         ),
     ],
 
